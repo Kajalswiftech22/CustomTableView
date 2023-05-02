@@ -32,6 +32,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        self.tableView.separatorStyle = .none
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
@@ -47,6 +48,36 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         cell.label.text = country.title
         cell.iconImageView.image = UIImage(named: country.imageName)
+        
+        cell.contentView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        
+        if ( cell.label.text == "Nepal"){
+            cell.label.textColor = UIColor.red
+        }
+        else if ( cell.label.text == "Canada"){
+            cell.label.textColor = UIColor.green
+        }
+        else if ( cell.label.text == "America"){
+            cell.label.textColor = UIColor.blue
+        }
+        else if ( cell.label.text == "Australia"){
+            cell.label.textColor = UIColor.systemTeal
+        }
+        else if ( cell.label.text == "London"){
+            cell.label.textColor = UIColor.purple
+        }
+        else if ( cell.label.text == "Singapore"){
+            cell.label.textColor = UIColor.systemBrown
+        }
+        else if ( cell.label.text == "China"){
+            cell.label.textColor = UIColor.systemOrange
+        }
+        
+        if (indexPath.row % 2 == 0) {
+               cell.contentView.layer.setAffineTransform(CGAffineTransform(scaleX: -1, y: 1))
+               cell.iconImageView.layer.setAffineTransform(CGAffineTransform(scaleX: -1, y: 1))
+               cell.label.layer.setAffineTransform(CGAffineTransform(scaleX: -1, y: 1))
+           }
         
         return cell
     }
